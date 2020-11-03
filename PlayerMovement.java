@@ -24,14 +24,14 @@ public class PlayerMovement extends JPanel {
 
 	private static int frameWidth = 700;
 	private static int frameHeight = 600;
-	private int imagePxSize = 96;	// image size
+	private int imagePxSize = 45;	// image size
 	private Image sqr;
 	private int x;
 	private int xMax, xMin;
 	private int y;
 	private int yMax, yMin;
-	private int moveSpeed = 25;
-	private String imageName = "square.png";
+	private int moveSpeed = 10;
+	private String imageName = "src/main/resources/images/square.png";
 	
 	private ImageIcon sq;
 
@@ -45,8 +45,8 @@ public class PlayerMovement extends JPanel {
 
 	public PlayerMovement() {
 		xMin = yMin = 0;
-		xMax = frameWidth - imagePxSize;		// max width of panel
-		yMax = frameHeight - imagePxSize - 22;	// max height of panel
+		xMax = frameWidth - imagePxSize - 3;		// max width of panel
+		yMax = frameHeight - imagePxSize - 23;	// max height of panel
 		x = y = 10;	// starting coords
 
 		setBackground(Color.white);
