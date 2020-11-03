@@ -1,0 +1,5 @@
+all - Generate .class files.
+clean - Remove build artifacts.
+help - Display this message.
+run - Run the demo.
+

@@ -1,9 +1,12 @@
 all: PlayerMovement.java
-	javac $<
+	@javac $<
 
 run: all
-	java PlayerMovement
+	@java PlayerMovement
 
 clean:
-	rm *.class
+	@rm *.class
+
+help: .makehelp
+	@cat < .makehelp
 
