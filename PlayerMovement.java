@@ -6,10 +6,10 @@
  * 
  * 	Shows how to make an image move across the screen
  * 	when the user presses a key (WASD/UDLR).
- * 
- *	Square image is 96x96 px.
  */
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -19,6 +19,7 @@ import java.awt.event.*;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 public class PlayerMovement extends JPanel {
 
@@ -35,6 +36,8 @@ public class PlayerMovement extends JPanel {
 	
 	private ImageIcon sq;
 
+	private JLabel instructions;
+
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g; // initialize graphics
@@ -45,9 +48,11 @@ public class PlayerMovement extends JPanel {
 
 	public PlayerMovement() {
 		xMin = yMin = 0;
-		xMax = frameWidth - imagePxSize - 3;		// max width of panel
-		yMax = frameHeight - imagePxSize - 23;	// max height of panel
-		x = y = 10;	// starting coords
+		xMax = frameWidth - imagePxSize;	// max width of panel
+		yMax = frameHeight - imagePxSize*2;	// max height of panel
+		// starting coords
+		x = 50;
+		y = 50;
 
 		setBackground(Color.white);
 		
@@ -55,7 +60,7 @@ public class PlayerMovement extends JPanel {
 		sq = new ImageIcon(this.getClass().getResource(imageName));
 
 		setDoubleBuffered(true); // better draw quality
-		sqr = sq.getImage();		
+		sqr = sq.getImage();
 		
 		this.setFocusable(true);	// need this for keyListener
 		this.addKeyListener(new KeyListener() {
@@ -108,7 +113,10 @@ public class PlayerMovement extends JPanel {
 	public static void main(String[] args) {
 		JFrame f = new JFrame("Game");
 		f.setSize(frameWidth, frameHeight);
-		f.add(new PlayerMovement());
+		Container pane = f.getContentPane();
+		pane.setLayout(new BorderLayout());
+		pane.add(new PlayerMovement(), BorderLayout.CENTER);
+		pane.add(new JLabel("Use arrow keys or WASD to move"), BorderLayout.PAGE_END);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
 		f.setResizable(false);
